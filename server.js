@@ -32,11 +32,11 @@ fs.readFile('matchupWinrateResults.json', (err, data) => {
   positionToWinrates = Object.fromEntries(positionToWinrates)
 })
 
-app.use(cors())
+//app.use(cors())
 
-// app.use(cors({
-//   origin: 'http://comp-builder.s3-website.us-east-2.amazonaws.com'
-// }));
+app.use(cors({
+  origin: 'https://compbuilder.gg'
+}));
 
 app.get('/api/data', (req, res) => {
   console.log(req.query)
