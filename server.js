@@ -13,7 +13,7 @@ let winRateData = null
 
 let positionToWinrates = null
 
-fs.readFile('matchupWinrateResults.json', (err, data) => {
+fs.readFile('jul31matchupWinrateResults.json', (err, data) => {
   if (err) throw err;
   winRateData = JSON.parse(data)
   positionToWinrates = new Map() 
@@ -32,11 +32,11 @@ fs.readFile('matchupWinrateResults.json', (err, data) => {
   positionToWinrates = Object.fromEntries(positionToWinrates)
 })
 
-//app.use(cors())
+app.use(cors())
 
-app.use(cors({
-  origin: 'https://compbuilder.gg'
-}));
+// app.use(cors({
+//   origin: 'https://compbuilder.gg'
+// }));
 
 app.get('/api/data', (req, res) => {
   console.log(req.query)
