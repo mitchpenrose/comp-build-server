@@ -13,6 +13,8 @@ let winRateData = null
 
 let positionToWinrates = null
 
+let championWinRateData = null
+
 fs.readFile('jul31matchupWinrateResults.json', (err, data) => {
   if (err) throw err;
   winRateData = JSON.parse(data)
@@ -32,6 +34,11 @@ fs.readFile('jul31matchupWinrateResults.json', (err, data) => {
   positionToWinrates = Object.fromEntries(positionToWinrates)
 })
 
+fs.readFile('jul31championMatchupWinrateResults.json', (err, data) => {
+  if (err) throw err;
+  championWinRateData = JSON.parse(data)
+})
+
 app.use(cors())
 
 // app.use(cors({
@@ -46,6 +53,11 @@ app.get('/api/data', (req, res) => {
 app.get('/api/winrates', (req, res) => {
   console.log('winrates')
   res.send(positionToWinrates)
+})
+
+app.get('/api/champData', (req, res) => {
+  console.log(req.query)
+  res.send(championWinRateData[req.query['id']])
 })
 
 app.listen(port, () => {
